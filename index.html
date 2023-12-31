@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Year Card</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin: 0;
+    }
+
+    #card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+
+    #gift {
+      display: none;
+      margin-top: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    #nextAfterGift {
+      display: none;
+    }
+
+    @media screen and (max-width: 600px) {
+      #card {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="card">
+  <h2 style="color: #4caf50;">Happy New Year!</h2>
+  <p style="margin-top: 10px;">What's your name?</p>
+  <input type="text" id="nameInput">
+  <button onclick="showGift()">Next</button>
+
+  <div id="greeting" style="display:none;"></div>
+
+  <div id="gift" style="display:none;">
+    <p style="margin-top: 20px; font-weight: bold;">A digital gift for you!</p>
+    <img id="randomGif" alt="New Year Gift">
+    <button onclick="downloadGift()">Download Gift</button>
+  </div>
+
+  <button id="nextAfterGift" onclick="showCourses()" style="margin-top: 20px;">Next</button>
+</div>
+
+<script>
+  var gifUrls = [
+    "https://www.icegif.com/wp-content/uploads/happy-new-year-icegif-7.gif",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt-uZqnoTrwOHRgjMFceNj81zU8cfEmrLO-pfsyJ6MKjnQg9fMZf9vgNfKaykcZIORqQs&usqp=CAU",
+    "https://i.pinimg.com/originals/f8/96/57/f89657da1c5041fe9f5eef004af86477.gif",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSQjDfnn_1kZs3Q61lKFl-PW8jg2iTmrF5FI4fb40tYlLnS28rUAUlWsR2m4m5EPShjq0&usqp=CAU",
+    "https://media2.giphy.com/media/Ny9qA3vCJ7pC4v9CWs/giphy.gif?cid=6c09b952msod524camuuf576ugvkluzolqh6gvlj252lvxxs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
+    "https://media.tenor.com/XL4yvm3Xhs8AAAAC/happy-new-year-2017.gif"
+  ];
+
+  function showGift() {
+    var name = document.getElementById("nameInput").value;
+    var greeting = document.getElementById("greeting");
+    greeting.innerHTML = "<p style='color: #4caf50;'>Happy New Year, " + name + "!</p>";
+    greeting.style.display = "block";
+
+    var randomGif = document.getElementById("randomGif");
+    var randomIndex = Math.floor(Math.random() * gifUrls.length);
+    randomGif.src = gifUrls[randomIndex];
+
+    var gift = document.getElementById("gift");
+    gift.style.display = "block";
+
+    var nextAfterGiftBtn = document.getElementById("nextAfterGift");
+    nextAfterGiftBtn.style.display = "block";
+  }
+
+  function downloadGift() {
+    var link = document.createElement("a");
+    link.href = document.getElementById("randomGif").src;
+    link.download = "NewYearGift.gif";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function showCourses() {
+    // Redirect to your GitHub page with courses
+    window.location.href = "https://github.com/yourusername/your-courses-repo";
+  }
+</script>
+
+</body>
+</html>
